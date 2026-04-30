@@ -1,135 +1,62 @@
-# Persona-Based AI Chatbot — Scaler Academy Assignment 01
+# Assignment 01 — Persona-Based AI Chatbot 🤖
 
-A production-grade AI chatbot that lets you have real, persona-authentic conversations with three Scaler/InterviewBit personalities — powered by Google Gemini.
-
-![App Preview](./docs/preview.png)
-
----
-
-## 🚀 Live Demo
-
-**[→ Live on Vercel](https://persona-based-ai.vercel.app)** *(update after deployment)*
+**Course:** Prompt Engineering | Scaler Academy  
+**Live Deployment:** [https://persona-based-ai-two.vercel.app](https://persona-based-ai-two.vercel.app)  
+**Tech Stack:** Vanilla JS, Vite, CSS3 (Glassmorphism design), Google Gemini Flash API
 
 ---
 
-## 🎯 Features
+## 🎯 Project Overview
+This project fulfills the requirements for Assignment 01: building a working, production-grade AI chatbot providing realistic conversations with three Scaler personalities:
+1. **Anshuman Singh**
+2. **Abhimanyu Saxena**
+3. **Kshitij Mishra**
 
-- 🎭 **3 Deep AI Personas** — Anshuman Singh, Abhimanyu Saxena, Kshitij Mishra
-- 💬 **Multi-turn Conversation** — context retained per session
-- 🔄 **Persona Switching** — resets conversation, changes system prompt
-- ⚡ **Suggestion Chips** — quick-start per persona
-- ⌨️ **Typing Indicator** — animated 3-dot pulse while waiting
-- 📱 **Fully Responsive** — works on mobile and desktop
-- 🛡️ **Error Handling** — graceful toast messages for API failures
-- 🎨 **Dark Glassmorphism UI** — per-persona accent colors
+Every concept taught in the lecture regarding system prompting has been rigorously applied. This includes deep persona descriptions, few-shot examples, Chain-of-Thought (CoT) instructions, and strict output constraints.
 
 ---
 
-## 🛠 Tech Stack
+## 🚀 Key Features
 
-| Layer       | Technology                  |
-|-------------|-----------------------------|
-| Framework   | Vite + Vanilla JS            |
-| Styling     | Vanilla CSS (custom system) |
-| LLM API     | Google Gemini 2.0 Flash      |
-| Deployment  | Vercel                       |
-
----
-
-## ⚙️ Local Setup
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/YOUR_USERNAME/PersonaBasedAI.git
-cd PersonaBasedAI
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Add your API key
-
-```bash
-cp .env.example .env
-```
-
-Open `.env` and add your Gemini API key:
-
-```
-VITE_GEMINI_API_KEY=your_actual_key_here
-```
-
-Get a free key at: [https://aistudio.google.com/apikey](https://aistudio.google.com/apikey)
-
-### 4. Run locally
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173)
+* **Three Unique Personas:** Seamlessly switch between the co-founders and instructors. Each possesses specifically engineered knowledge boundaries, communication styles, and constraints.
+* **Annotated System Prompts:** Hand-engineered prompts tailored via online research of their public posts and interview styles. (Please see `prompts.md` for in-depth `// WHY:` annotations).
+* **Premium UI/UX:** Built with a modern dark glassmorphism design system, dynamic styling based on the active persona, and responsive chat bubbles.
+* **Robust Error Handling:** Designed with non-blocking asynchronous interactions, catching API errors gracefully and showing UI Toast notifications rather than crashing the client.
+* **⭐ Additional Feature — Persistent Caching:** Custom functionality was integrated utilizing browser `localStorage` to cache conversation history. Switching between personas retains and isolated previous interactions seamlessly, allowing users to pause and resume multi-agent conversations without context leakage.
 
 ---
 
-## 📁 Project Structure
+## 📂 Required Submissions & Code Structure
 
-```
-PersonaBasedAI/
-├── index.html          ← App shell (semantic HTML, SEO meta)
-├── vite.config.js
-├── package.json
-├── .env                ← Your API key (never committed)
-├── .env.example        ← Template for env vars
-├── .gitignore
-├── README.md
-├── prompts.md          ← Annotated system prompts
-├── reflection.md       ← 400-word reflection
-└── src/
-    ├── main.js         ← App logic & event wiring
-    ├── api.js          ← Gemini API wrapper
-    ├── personas.js     ← All 3 system prompts + metadata
-    ├── ui.js           ← DOM helpers
-    └── style.css       ← Full design system
-```
+| File | Requirement Fulfilled |
+|------|---------|
+| `src/personas.js` | Contains the three heavily researched system prompts, constraints, and CoT logic in source code. |
+| `src/api.js` | Wrapper for the Google Gemini SDK safely utilizing `.env` variables (no hardcoded keys). |
+| `src/main.js` | Front-end controller handling DOM logic, active switching, and the **Caching Addition**. |
+| `prompts.md` | Required assignment documentation explaining the exact prompt engineering rationale. |
+| `reflection.md` | Final assignment reflection regarding what worked and lessons regarding the GIGO principle. |
 
 ---
 
-## 🧠 The Three Personas
+## ⚙️ How to Review Locally
 
-| Persona | Role | Voice |
-|---|---|---|
-| **Anshuman Singh** | Co-founder, Scaler & InterviewBit | Candid, engineer-brained, fundamentals-obsessed |
-| **Abhimanyu Saxena** | Co-founder & CEO, Scaler | Mission-driven, uses compass/map analogy, reflective |
-| **Kshitij Mishra** | Head of Instructors, Scaler | Warm teacher energy, structured, celebrates small wins |
+If you are evaluating this offline (instead of the Vercel link):
 
-See [prompts.md](./prompts.md) for the full annotated system prompts.
+1. **Clone and Install:**
+   ```bash
+   git clone https://github.com/arnav-yadav/PersonaBasedAI.git
+   cd PersonaBasedAI
+   npm install
+   ```
 
----
+2. **Configure API Key:**
+   Create a `.env` file in the root directory (using `.env.example` as a template) and add your free Google AI Studio key:
+   ```plaintext
+   VITE_GEMINI_API_KEY=your_actual_key_here
+   ```
 
-## 🚢 Deployment (Vercel)
-
-```bash
-npm install -g vercel
-vercel
-```
-
-Add `VITE_GEMINI_API_KEY` in your Vercel project's Environment Variables.
-
----
-
-## 📄 Documentation
-
-- [`prompts.md`](./prompts.md) — All 3 system prompts with inline design annotations
-- [`reflection.md`](./reflection.md) — What worked, GIGO lessons, what to improve
-
----
-
-## 🔒 Security
-
-- API key stored in `.env` — never committed
-- `.env` is in `.gitignore`
-- `.env.example` provided as a safe template
+3. **Start the Web Server:**
+   ```bash
+   npm run dev
+   ```
+   *The server will typically become available instantly at `http://localhost:5173/`*

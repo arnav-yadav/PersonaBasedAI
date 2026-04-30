@@ -1,6 +1,6 @@
 # Assignment 01 — Persona-Based AI Chatbot 🤖
 
-**Course:** Prompt Engineering | Scaler Academy  
+**Course:** GenAI   
 **Live Deployment:** [https://persona-based-ai-two.vercel.app](https://persona-based-ai-two.vercel.app)  
 **Tech Stack:** Vanilla JS, Vite, CSS3 (Glassmorphism design), Google Gemini Flash API
 

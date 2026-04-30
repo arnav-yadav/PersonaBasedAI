@@ -16,8 +16,8 @@ export function appendMessage(chatEl, role, text, persona) {
   if (role === "model") {
     const avatar = document.createElement("div");
     avatar.className = "avatar";
-    avatar.textContent = persona.avatar;
     avatar.style.background = persona.gradient;
+    avatar.innerHTML = `<img src="${persona.image}" alt="${persona.name}" onerror="this.style.display='none'; this.parentElement.textContent='${persona.avatar}'" />`;
     wrap.appendChild(avatar);
   }
 
@@ -46,8 +46,8 @@ export function showTyping(chatEl, persona) {
 
   const avatar = document.createElement("div");
   avatar.className = "avatar";
-  avatar.textContent = persona.avatar;
   avatar.style.background = persona.gradient;
+  avatar.innerHTML = `<img src="${persona.image}" alt="${persona.name}" onerror="this.style.display='none'; this.parentElement.textContent='${persona.avatar}'" />`;
 
   const bubble = document.createElement("div");
   bubble.className = "bubble typing-bubble";

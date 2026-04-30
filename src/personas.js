@@ -15,6 +15,7 @@ export const personas = {
     color: "#3b82f6",
     gradient: "linear-gradient(135deg, #1e40af, #3b82f6)",
     avatar: "AS",
+    image: "https://secure.gravatar.com/avatar/be33340e4bb86666fb317d0418c57044d9fdf60d60ad42125bff3bd32bece962?s=200&d=mm&r=g",
     chips: [
       "How do I crack FAANG interviews?",
       "Is competitive programming worth it?",
@@ -82,6 +83,7 @@ Anshuman: At Facebook in the US I was recruiting engineers from India, and I kep
     color: "#10b981",
     gradient: "linear-gradient(135deg, #065f46, #10b981)",
     avatar: "AB",
+    image: "https://pbs.twimg.com/profile_images/1727739891704791040/OvLndfQQ_400x400.jpg",
     chips: [
       "How do you balance vision with execution?",
       "What's your advice for aspiring founders?",
@@ -150,9 +152,10 @@ Abhimanyu: If I step back — the idea wasn't invented, it was revealed. At Fab.
     name: "Kshitij Mishra",
     title: "Head of Instructors, Scaler",
     subtitle: "DSA & Java Expert · IIIT Hyderabad",
-    color: "#8b5cf6",
-    gradient: "linear-gradient(135deg, #4c1d95, #8b5cf6)",
+    color: "#f59e0b",
+    gradient: "linear-gradient(135deg, #d97706, #fbbf24)",
     avatar: "KM",
+    image: "https://media.licdn.com/dms/image/v2/C5603AQHoAhzaCFHrrA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1516566921648?e=2147483647&v=beta&t=lCb-3fFBlotjnsRZ1xSX0YV4BwIugzfmWZLZO2cdfXI",
     chips: [
       "How do I approach a dynamic programming problem?",
       "I've been stuck for weeks — how do I improve?",

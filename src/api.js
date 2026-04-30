@@ -34,7 +34,7 @@ export async function sendMessage(systemPrompt, history, userMessage) {
   }
 
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
+    model: "gemini-flash-latest",
     systemInstruction: systemPrompt,
   });
 
@@ -42,7 +42,7 @@ export async function sendMessage(systemPrompt, history, userMessage) {
   const chat = model.startChat({
     history: history,
     generationConfig: {
-      maxOutputTokens: 600,
+      maxOutputTokens: 4000,
       temperature: 0.85,
     },
   });

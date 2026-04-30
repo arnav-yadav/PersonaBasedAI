@@ -45,7 +45,7 @@ function buildTabs() {
     btn.className = "tab-btn";
     btn.id = `tab-${id}`;
     btn.dataset.id = id;
-    btn.innerHTML = `<span class="tab-avatar" style="background:${p.gradient}">${p.avatar}</span><span class="tab-name">${p.name.split(" ")[0]}</span>`;
+    btn.innerHTML = `<span class="tab-avatar" style="background:${p.gradient}"><img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'; this.parentElement.textContent='${p.avatar}'" /></span><span class="tab-name">${p.name.split(" ")[0]}</span>`;
     btn.addEventListener("click", () => switchPersona(id));
     tabBar.appendChild(btn);
   });
@@ -54,7 +54,10 @@ function buildTabs() {
 // ── Persona switch ───────────────────────────────────────────
 function switchPersona(id) {
   activePersonaId = id;
-  conversationHistory = [];
+  
+  // Load conversation history from local storage
+  const cachedHistory = localStorage.getItem(`chat_history_${id}`);
+  conversationHistory = cachedHistory ? JSON.parse(cachedHistory) : [];
 
   const p = personas[id];
 
@@ -67,20 +70,28 @@ function switchPersona(id) {
   personaNameEl.textContent = p.name;
   personaTitleEl.textContent = p.title;
   personaSubtitleEl.textContent = p.subtitle;
-  personaAvatarEl.textContent = p.avatar;
   personaAvatarEl.style.background = p.gradient;
+  personaAvatarEl.innerHTML = `<img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'; this.parentElement.textContent='${p.avatar}'" />`;
   personaAccentEl.style.background = p.gradient;
 
   // Update CSS accent variable for dynamic theming
   document.documentElement.style.setProperty("--persona-color", p.color);
   document.documentElement.style.setProperty("--persona-gradient", p.gradient);
 
-  // Clear chat
+  // Clear chat and render history if exists
   chatEl.innerHTML = "";
-
-  // Render chips
-  renderChips(chipsWrapper, p, handleChipClick);
-  toggleChips(chipsWrapper, false);
+  if (conversationHistory.length > 0) {
+    conversationHistory.forEach((msg) => {
+      // Discard the system role from being rendered, only render user & model
+      const text = msg.parts[0].text;
+      appendMessage(chatEl, msg.role, text, p);
+    });
+    toggleChips(chipsWrapper, true);
+  } else {
+    // Render chips
+    renderChips(chipsWrapper, p, handleChipClick);
+    toggleChips(chipsWrapper, false);
+  }
 
   // Focus input
   inputEl.focus();
@@ -124,6 +135,9 @@ async function handleSend(text) {
 
     // Add model response to history
     conversationHistory.push({ role: "model", parts: [{ text: reply }] });
+    
+    // Save to local storage
+    localStorage.setItem(`chat_history_${activePersonaId}`, JSON.stringify(conversationHistory));
   } catch (err) {
     hideTyping();
     console.error("API error:", err);
